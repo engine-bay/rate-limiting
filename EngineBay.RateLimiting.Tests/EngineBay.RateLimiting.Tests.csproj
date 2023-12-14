@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <RootNamespace>EngineBay.ModuleTemplate.Tests</RootNamespace>
+        <RootNamespace>EngineBay.RateLimiting.Tests</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EngineBay.ModuleTemplate\EngineBay.ModuleTemplate.csproj" />
+        <ProjectReference Include="..\EngineBay.RateLimiting\EngineBay.RateLimiting.csproj" />
     </ItemGroup>
 
     <ItemGroup>
