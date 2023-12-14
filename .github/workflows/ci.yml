@@ -33,11 +33,11 @@ jobs:
     - run: dotnet tool restore
     - run: dotnet coverage collect dotnet test --output ./output.cobertura.xml --output-format cobertura
     - run: dotnet reportgenerator -reports:./output.cobertura.xml -targetdir:"." -reporttypes:Clover -assemblyfilters:"-Humanizer;-Microsoft.TestPlatform*;-Microsoft.VisualStudio*;-xunit*;"
-    - uses: paambaati/codeclimate-action@v5.0.0
-      env:
-        CC_TEST_REPORTER_ID: 4a08e8949fdf5057c55b67f5c186f5abc0cd0c37d839e9d9e171e71c9cd13d94
-      with:
-        coverageLocations: ${{github.workspace}}/Clover.xml:clover
+    # - uses: paambaati/codeclimate-action@v5.0.0
+    #   env:
+    #     CC_TEST_REPORTER_ID:
+    #   with:
+    #     coverageLocations: ${{github.workspace}}/Clover.xml:clover
   analyze:
     needs: [ build ]
     name: Analyze

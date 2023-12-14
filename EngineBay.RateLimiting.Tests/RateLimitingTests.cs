@@ -1,8 +1,8 @@
-namespace EngineBay.ModuleTemplate.Tests
+namespace EngineBay.RateLimiting.Tests
 {
     using Xunit;
 
-    public class ModuleTemplateTests
+    public class RateLimitingTests
     {
         [Fact]
         public void ControlTest()
