@@ -8,43 +8,14 @@ namespace EngineBay.RateLimiting
     {
         public override IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddRateLimiter(_ => _
-                .AddFixedWindowLimiter(policyName: RateLimitingPolicies.FIXED, options =>
-                {
-                    options.PermitLimit = RateLimitingConfiguration.PermitLimit();
-                    options.Window = TimeSpan.FromSeconds(RateLimitingConfiguration.Window());
-                    options.QueueProcessingOrder = RateLimitingConfiguration.QueueProcessingOrder();
-                    options.QueueLimit = RateLimitingConfiguration.QueueLimit();
-                }));
-
-            services.AddRateLimiter(_ => _
-                .AddSlidingWindowLimiter(policyName: RateLimitingPolicies.SLIDING, options =>
-                {
-                    options.PermitLimit = RateLimitingConfiguration.PermitLimit();
-                    options.Window = TimeSpan.FromSeconds(RateLimitingConfiguration.Window());
-                    options.SegmentsPerWindow = RateLimitingConfiguration.SegmentsPerWindow();
-                    options.QueueProcessingOrder = RateLimitingConfiguration.QueueProcessingOrder();
-                    options.QueueLimit = RateLimitingConfiguration.QueueLimit();
-                }));
-
-            services.AddRateLimiter(_ => _
-                .AddTokenBucketLimiter(policyName: RateLimitingPolicies.TOKEN, options =>
-                {
-                    options.TokenLimit = RateLimitingConfiguration.TokenLimit();
-                    options.QueueProcessingOrder = RateLimitingConfiguration.QueueProcessingOrder();
-                    options.QueueLimit = RateLimitingConfiguration.QueueLimit();
-                    options.ReplenishmentPeriod = TimeSpan.FromSeconds(RateLimitingConfiguration.ReplenishmentPeriod());
-                    options.TokensPerPeriod = RateLimitingConfiguration.TokensPerPeriod();
-                    options.AutoReplenishment = RateLimitingConfiguration.AutoReplenishment();
-                }));
-
-            services.AddRateLimiter(_ => _
-                .AddConcurrencyLimiter(policyName: RateLimitingPolicies.CONCURRENCY, options =>
-                {
-                    options.PermitLimit = RateLimitingConfiguration.PermitLimit();
-                    options.QueueProcessingOrder = RateLimitingConfiguration.QueueProcessingOrder();
-                    options.QueueLimit = RateLimitingConfiguration.QueueLimit();
-                }));
+            services.AddRateLimiter(options =>
+            {
+                options
+                .AddPolicy<string, FixedWindowPolicy>(RateLimitingPolicies.FIXED)
+                .AddPolicy<string, SlidingWindowPolicy>(RateLimitingPolicies.SLIDING)
+                .AddPolicy<string, TokenBucketPolicy>(RateLimitingPolicies.TOKEN)
+                .AddPolicy<string, ConcurrencyPolicy>(RateLimitingPolicies.CONCURRENCY);
+            });
 
             return services;
         }

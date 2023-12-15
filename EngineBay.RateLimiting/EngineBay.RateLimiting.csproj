@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>EngineBay.RateLimiting</PackageId>
-        <Version>0.0.0-pre</Version>
+        <Version>0.0.0</Version>
         <Authors>EngineBay</Authors>
         <Company>EngineBay</Company>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -41,7 +41,6 @@
     </Choose>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="7.0.0-rc.2.22476.2" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
